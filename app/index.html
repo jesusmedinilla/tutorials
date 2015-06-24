@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/animations.css" />
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+
+<body>
+
+<ng:include src="'/view/header/header.view.html'"></ng:include>
+
+<div class="jumbotron">
+    <div class="container">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div data-ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }"
+                 data-ng-if="flash"
+                 data-ng-bind="flash.message">
+            </div>
+
+            <div data-ng-view></div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="/bower_components/requirejs/require.js" data-main="/scripts/bootstrap.js"></script>
+
+
+<!--script src="bower_components/angular-resource/angular-resource.js"></script>
+
+<script src="js/factories/crud.factory.js"></script>
+
+<script src="js/services/j2ee/services.crud.j2ee.js"></script>
+<script src="js/services/parse/services.crud.parse.js"></script>
+
+<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script-->
+
+</body>
+
+</html>

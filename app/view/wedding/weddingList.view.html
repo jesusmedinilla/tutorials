@@ -1,0 +1,54 @@
+<h1>Listado de Bodas</h1>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="btn-group">
+            <label class="btn btn-success"
+                   ng-model="vm.selectedView"
+                   btn-radio="'default'">
+                Vista Listado
+            </label>
+
+            <label class="btn btn-success"
+                   ng-model="vm.selectedView"
+                   btn-radio="'calendar'">
+                Vista Calendario
+            </label>
+        </div>
+    </div>
+    <div class="row margin-top-normal">
+        <div class="animate-switch-container" ng-switch="vm.selectedView">
+            <div class="animate-switch" ng-switch-when="default">
+                <div>
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="wedding in vm.weddings">
+                                <td >
+                                    <a href='#/weddings/{{ wedding.id }}'>Nombre: {{ wedding.name }}</a>
+                                </td>
+                                <td>
+                                    jsjs
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+            <div class="animate-switch" ng-switch-when="calendar">
+                <div style="display:inline-block; min-height:290px;">
+                    <datepicker ng-model="dt" min-date="minDate" show-weeks="true" class="well well-sm" custom-class="getDayClass(date, mode)"></datepicker>
+                </div>
+            </div>
+        </div>
+
+        <button data-ng-click="vm.addWedding()" class="btn btn-primary margin-top-normal">Crear Boda</button>
+    </div>
+</div>

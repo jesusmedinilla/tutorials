@@ -1,0 +1,17 @@
+<div class="col-md-6 col-md-offset-3">
+    <h2>Detalles de la Boda</h2>
+    <!--div data-ng-show="vm.error" class="alert alert-danger">{{vm.error}}</div-->
+    <form name="form" role="form" data-ng-submit="vm.saveWedding()"> <!-- data-ng-submit="vm.register()" -->
+        <div class="form-group" data-ng-class="{ 'has-error': form.name.$dirty && form.name.$error.required }">
+            <label for="name">Nombre</label>
+            <input type="text" name="name" id="name" class="form-control" data-ng-model="vm.wedding.name" required />
+            <span data-ng-show="form.name.$dirty && form.name.$error.required" class="help-block">El nombre es obligatorio</span>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" data-ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Grabar</button>
+            <img data-ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            <button type="button" class="btn btn-link" data-ng-click="vm.deleteWedding()">Borrar</button>
+        </div>
+    </form>
+</div>
