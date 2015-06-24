@@ -1,0 +1,10 @@
+<!--script src="/view/header/HeaderController.js"></script-->
+<div id="header" data-ng-controller="HeaderController">
+
+        <a href="#/">Titulo WEB</a>
+    <div class="right" data-ng-show="isLogged">
+    	<label>{{ welcomeMessage }}</label>
+    	<a href="#/login">Logout</a>
+    </div>
+</div>
+
