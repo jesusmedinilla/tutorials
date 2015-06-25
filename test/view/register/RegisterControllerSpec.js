@@ -5,12 +5,11 @@ module('app', function(app)
 	console.log(app)
 });
 
-define([    'view/login/LoginController',
-            'scripts/factories/AuthenticationService',
+define([    'view/register/RegisterController',
             'scripts/factories/FlashService',
             'scripts/services/mock/UserService'], function(app)
 {
-	describe("The 'LoginController'", function()
+	describe("The 'RegisterController'", function()
 	{
 		var $rootScope;
 		var $controller;
@@ -18,7 +17,7 @@ define([    'view/login/LoginController',
         var $q;
         var ctrl;
         var $location;
-        var authService;
+        var userService;
         var flashService;
 
         var spyPromise;
@@ -36,40 +35,38 @@ define([    'view/login/LoginController',
 				'$rootScope',
 				'$controller',
                 '$location',
-                'AuthenticationService',
+                'UserService',
                 'FlashService',
                 '$q',
 
-				function($injector, _$rootScope, _$controller, $location, AuthenticationService, FlashService, $q )
+				function($injector, _$rootScope, _$controller, $location, UserService, FlashService, $q )
 				{
 					$rootScope = _$rootScope;
 					$scope = $rootScope.$new();
 					$controller = _$controller;
                     $location = $location;
-                    authService = AuthenticationService;
                     flashService = FlashService;
+                    userService = UserService;
                     $q = $q;
 
                     deferred = $q.defer();
                     spyPromise = deferred.promise;
-                    // Guardamos el resultado de la operación login en el spyPromise
-                    spied = spyOn(authService, 'Login').and.returnValue(spyPromise);//.and.callThrough();
-                    //spied = spyOn(authService, 'Login').and.callThrough();
+                    spied = spyOn(userService, 'create').and.returnValue(spyPromise);//.and.callThrough();
 
                     spiedLocation = spyOn( $location, 'path');
                 }
 			]);
 
-            ctrl = $controller('LoginController', {$scope: $scope});
+            ctrl = $controller('RegisterController', {$scope: $scope});
 
 		});
 
 		it("should not be loading anything", function()
 		{
-			expect( ctrl.dataLoading ).toBe( false );
+			expect( ctrl ).toBeDefined();
 		});
 
-        it("should login goes wrong", function()
+        it("should create user goes wrong", function()
         {
             var resolvedValue;
 
@@ -78,32 +75,30 @@ define([    'view/login/LoginController',
             $rootScope.$digest();
 
             var spiedError = spyOn(flashService, 'Error')
-            ctrl.login();
+            ctrl.register();
 
-            expect( spied ).toHaveBeenCalled();
             expect( ctrl.dataLoading ).toBe( true );
 
+            expect( spied ).toHaveBeenCalled();
             expect( spyPromise  ).toBeDefined();
             spyPromise.then(function( value )
             {
                 resolvedValue = value;
-                expect( ctrl.dataLoading ).toBe( false );
                 expect( spiedError ).toHaveBeenCalled();
 
-                expect( spiedLocation ).toHaveBeenCalledWith('/login');
-                expect( spiedLocation ).not.toHaveBeenCalledWith('/weddings');
+                expect( ctrl.dataLoading ).toBe( false );
+                //expect( spiedLocation ).toHaveBeenCalledWith('/login');
             });
 
             // Aplico el promise
             $rootScope.$apply();
 
             // Puedo testear cosas que hago en el then, ya que he hecho el apply
-            expect( ctrl.dataLoading ).toBe( false );
             expect( resolvedValue  ).toBeDefined();
 
         });
 
-        it("should login goes well", function()
+        it("should create user goes well", function()
         {
             var resolvedValue;
 
@@ -112,9 +107,9 @@ define([    'view/login/LoginController',
             $rootScope.$digest();
 
             var spiedError = spyOn(flashService, 'Error');
+            var spiedSuccess = spyOn(flashService, 'Success');
 
-
-            ctrl.login();
+            ctrl.register();
 
             expect( spied ).toHaveBeenCalled();
             expect( ctrl.dataLoading ).toBe( true );
@@ -124,9 +119,9 @@ define([    'view/login/LoginController',
             {
                 resolvedValue = value;
                 expect( ctrl.dataLoading ).toBe( false );
-                expect( spiedError ).not.toHaveBeenCalled();
 
-                expect( spiedLocation ).toHaveBeenCalledWith('/weddings');
+                expect( spiedError ).not.toHaveBeenCalled();
+                expect( spiedSuccess).toHaveBeenCalled();
             });
 
             // Aplico el promise

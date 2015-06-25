@@ -14,6 +14,7 @@
                 .then(function (response) {
                     if (response.success) {
                         FlashService.Success('Registration successful', true);
+                        vm.dataLoading = false;
                         $location.path('/login');
                     } else {
                         FlashService.Error(response.message);
@@ -23,4 +24,4 @@
         }
     }
 
-})();
+})
