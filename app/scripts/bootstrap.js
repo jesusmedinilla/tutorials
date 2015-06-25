@@ -11,14 +11,16 @@ require.config({
 
 		'bootstrap': '/bower_components/bootstrap/dist/js/bootstrap.min',
 		'jquery': '/bower_components/jquery/dist/jquery',
-        'parse': '/bower_components/parse/parse'
+        'parse': '/bower_components/parse/parse',
+
+        'webcomponents-lite':'/bower_components/webcomponentsjs/webcomponents-lite.min'
     },
 
     shim: {
 		'app': {
 			deps: [ 'angular', 'angular-route', 'angular-cookies',
                     'angular-animate', 'ui-bootstrap', 'ui-bootstrap-tpls',
-                    'bootstrap', 'parse' ]
+                    'bootstrap', 'parse', 'webcomponents-lite' ]
 		},
 		'angular-route': {
 			deps: ['angular']

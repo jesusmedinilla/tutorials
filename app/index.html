@@ -5,11 +5,14 @@
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="/css/animations.css" />
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+
 </head>
 
 <body>
 
 <ng:include src="'/view/header/header.view.html'"></ng:include>
+
+<header-element></header-element>
 
 <div class="jumbotron">
     <div class="container">
@@ -28,14 +31,21 @@
 <script type="text/javascript" src="/bower_components/requirejs/require.js" data-main="/scripts/bootstrap.js"></script>
 
 
+<!-- Componentes Polymer -->
+
+<link rel="import" href="/components/header-element.html">
+
+
+
+
+
+
 <!--script src="bower_components/angular-resource/angular-resource.js"></script>
 
 <script src="js/factories/crud.factory.js"></script>
 
 <script src="js/services/j2ee/services.crud.j2ee.js"></script>
-<script src="js/services/parse/services.crud.parse.js"></script>
-
-<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script-->
+<script src="js/services/parse/services.crud.parse.js"></script-->
 
 </body>
 

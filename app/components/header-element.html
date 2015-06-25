@@ -1,0 +1,31 @@
+<link rel="import"
+      href="/bower_components/polymer/polymer.html">
+
+
+
+<dom-module id="header-element">
+
+    <style>
+    </style>
+
+    <template>
+        <div>{{greeting}}</div>
+    </template>
+
+    <script>
+        Polymer({
+            is: "header-element",
+
+            // add properties and methods on the element's prototype
+
+            properties: {
+                // declare properties for the element's public API
+                greeting: {
+                    type: String,
+                    value: "Hello!"
+                }
+            }
+        });
+    </script>
+
+</dom-module>
